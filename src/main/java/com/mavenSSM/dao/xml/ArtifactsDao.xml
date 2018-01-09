@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mavenSSM.dao.ArtifactsDao">
+
+	<resultMap id="artifactsMap" type="com.mavenSSM.model.Artifacts">
+		<id property="id" column="id" />
+  		<result property="owner" column="Owner" />
+  		<result property="started_date" column="Started_date" />
+  		<result property="finished_date" column="Finished_date" />
+  		<result property="used_days" column="Used_days" />
+  		<result property="category" column="Category" />
+  		<result property="description" column="Description" />
+  		 
+  	</resultMap>
+  	
+  	<select id="getAllARtifacts" resultMap="artifactsMap">
+  		SELECT id, Owner, Started_date, Finished_date,Used_days,Category,Description FROM artifacts
+  	</select>
+  	
+  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Artifacts" useGeneratedKeys="true" keyProperty="artifacts.id" keyColumn="id">
+  		INSERT INTO artifacts(Owner, Started_date, Finished_date, Used_days, Category, Description ) 
+  		VALUES(#{artifacts.owner}, #{artifacts.started_date}, #{artifacts.finished_date},#{artifacts.used_days},
+  		#{artifacts.category},#{artifacts.description})
+  	</insert>
+	
+	<update id="editItem" >
+		update ARTIFACTS SET 
+		Owner=#{list.owner}, 
+		Started_date=#{list.started_date}, 
+		Finished_date=#{list.finished_date},
+		Used_days=#{list.used_days},
+		Category=#{list.category},
+		Description=#{list.description}
+		WHERE id=#{list.id}
+	</update>
+</mapper>

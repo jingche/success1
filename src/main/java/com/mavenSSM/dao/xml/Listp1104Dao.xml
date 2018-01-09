@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mavenSSM.dao.Listp1104Dao">
+
+	<resultMap id="listp1104Map" type="com.mavenSSM.model.Listp1104">
+		<id property="id" column="id" />
+  		<result property="date" column="Date" />
+  		<result property="passed" column="Passed" />
+  		<result property="failed_TR" column="Failed_TR" />
+  		<result property="failed_Environment" column="Failed_Environment" />
+  		<result property="failed_Artifact" column="Failed_Artifact" />
+  		<result property="inconclusive" column="Inconclusive" />
+  		<result property="comment" column="Comment" />
+  		<result property="g1_LTE_UP" column="G1_LTE_UP" />
+  		<result property="g2_LTE_UP" column="G2_LTE_UP" />
+  		<result property="effectiveness" column="Effectiveness" />
+  		<result property="stability" column="Stability" />
+  	</resultMap>
+  	
+  	<select id="getAllLIstp1104" resultMap="listp1104Map">
+  		SELECT id, Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP, G2_LTE_UP,Effectiveness,Stability FROM listp1104
+  	</select>
+  	
+  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Listp1104" useGeneratedKeys="true" keyProperty="listp1104.id" keyColumn="id">
+  		INSERT INTO listp1104(Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP, G2_LTE_UP,Effectiveness,Stability) 
+  		VALUES(#{listp1104.date}, #{listp1104.passed}, #{listp1104.failed_TR},#{listp1104.failed_Environment},
+  		#{listp1104.failed_Artifact},#{listp1104.inconclusive},#{listp1104.comment},#{listp1104.g1_LTE_UP},#{listp1104.g2_LTE_UP},#{listp1104.effectiveness},#{listp1104.stability})
+  	</insert>
+	
+	<update id="editItem" >
+		update  LISTP1104 SET 
+		Date=#{list.date}, 
+		Passed=#{list.passed}, 
+		Failed_TR=#{list.failed_TR},
+		Failed_Environment=#{list.failed_Environment},
+		Failed_Artifact=#{list.failed_Artifact},
+		Inconclusive=#{list.inconclusive},
+		Comment=#{list.comment},
+		G1_LTE_UP=#{list.g1_LTE_UP},
+		G2_LTE_UP=#{list.g2_LTE_UP},
+		Effectiveness=#{list.effectiveness},
+		Stability=#{list.stability} 
+		WHERE id=#{list.id}
+	</update>
+</mapper>

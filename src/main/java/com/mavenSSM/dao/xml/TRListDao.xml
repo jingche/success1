@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mavenSSM.dao.TRListDao">
+
+	<resultMap id="trlistMap" type="com.mavenSSM.model.Trlist">
+		<id property="id" column="id" />
+  		<result property="eriref" column="Eriref" />
+  		<result property="registered_by" column="Registered_by" />
+  		<result property="registered_date" column="Registered_date" />
+  		<result property="finished_date" column="Finished_date" />
+  		<result property="turnaround_time" column="Turnaround_time" />
+  		<result property="answer_code" column="Answer_code" />
+  		<result property="valid" column="Valid" />
+  		<result property="heading" column="Heading" />
+  	</resultMap>
+  	
+  	<select id="getAllTRList" resultMap="trlistMap">
+  		SELECT id, Eriref, Registered_by, Registered_date,Finished_date,Turnaround_time,Answer_code,Valid, Heading FROM trlist
+  	</select>
+  	
+  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Trlist" useGeneratedKeys="true" keyProperty="trlist.id" keyColumn="id">
+  		INSERT INTO trlist(Eriref, Registered_by, Registered_date,Finished_date,Turnaround_time,Answer_code,Valid, Heading) 
+  		VALUES(#{trlist.eriref}, #{trlist.registered_by}, #{trlist.registered_date},#{trlist.finished_date},
+  		#{trlist.turnaround_time},#{trlist.answer_code},#{trlist.valid},#{trlist.heading})
+  	</insert>
+	
+	<update id="editItem" >
+		update TRLIST SET 
+		Eriref=#{list.eriref}, 
+		Registered_by=#{list.registered_by}, 
+		Registered_date=#{list.registered_date},
+		Finished_date=#{list.finished_date},
+		Turnaround_time=#{list.turnaround_time},
+		Answer_code=#{list.answer_code},
+		Valid=#{list.valid},
+		Heading=#{list.heading} 
+		WHERE id=#{list.id}
+	</update>
+</mapper>

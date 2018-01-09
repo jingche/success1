@@ -1,0 +1,28 @@
+.fil-btn{
+  margin-bottom:15px;
+}
+.col-md-12{
+  width:100%;
+  float:left;
+  position:relative;
+  min-height:1px;
+  padding-right:15px;
+  padding-left: 15px;
+}
+.text-center{
+  text-align:center;
+}
+.fil-btn .active1{
+  background-color: #3498DB;
+}
+.filter{
+  background-color: #2C3E50;
+  color:#fff;
+  padding:15px 30px;
+  border-right:1px solid #fff;
+  display:inline-block;
+  position:relative;
+}
+.wrk-title{
+  cursor:pointer;
+}

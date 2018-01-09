@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mavenSSM.dao.Listp1114Dao">
+
+	<resultMap id="listp1114Map" type="com.mavenSSM.model.Listp1114">
+		<id property="id" column="id" />
+  		<result property="date" column="Date" />
+  		<result property="passed" column="Passed" />
+  		<result property="failed_TR" column="Failed_TR" />
+  		<result property="failed_Environment" column="Failed_Environment" />
+  		<result property="failed_Artifact" column="Failed_Artifact" />
+  		<result property="inconclusive" column="Inconclusive" />
+  		<result property="comment" column="Comment" />
+  		<result property="g1_LTE_UP" column="G1_LTE_UP" />
+  		<result property="g1_WCDMA_UP" column="G1_WCDMA_UP" />
+  		<result property="effectiveness" column="Effectiveness" />
+  		<result property="stability" column="Stability" />
+  	</resultMap>
+  	
+  	<select id="getAllLIstp1114" resultMap="listp1114Map">
+  		SELECT id, Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP,G1_WCDMA_UP,Effectiveness,Stability FROM listp1114
+  	</select>
+  	
+  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Listp1114" useGeneratedKeys="true" keyProperty="listp1114.id" keyColumn="id">
+  		INSERT INTO listp1114(Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP,G1_WCDMA_UP,Effectiveness,Stability) 
+  		VALUES(#{listp1114.date}, #{listp1114.passed}, #{listp1114.failed_TR},#{listp1114.failed_Environment},
+  		#{listp1114.failed_Artifact},#{listp1114.inconclusive},#{listp1114.comment},#{listp1114.g1_LTE_UP},#{listp1114.g1_WCDMA_UP},#{listp1114.effectiveness},#{listp1114.stability})
+  	</insert>
+	
+	<update id="editItem" >
+		update  LISTP1114 SET 
+		Date=#{list.date}, 
+		Passed=#{list.passed}, 
+		Failed_TR=#{list.failed_TR},
+		Failed_Environment=#{list.failed_Environment},
+		Failed_Artifact=#{list.failed_Artifact},
+		Inconclusive=#{list.inconclusive},
+		Comment=#{list.comment},
+		G1_LTE_UP=#{list.g1_LTE_UP},
+		G1_WCDMA_UP=#{list.g1_WCDMA_UP},
+		Effectiveness=#{list.effectiveness},
+		Stability=#{list.stability} 
+		WHERE id=#{list.id}
+	</update>
+</mapper>
